@@ -7,11 +7,12 @@ def showResults2D(transformed_vector, origin_vector):
     plt.grid(color='gray', linestyle='--', linewidth=0.5)
 
     # Plot the new space defined by the vectors
-    plt.quiver(*[1, 0],  color=['r'], scale=10)
-    plt.quiver(*[0, 1],  color=['b'], scale=10)
-    for i in range(len(transformed_vector)):
-        plt.scatter(transformed_vector[i][0], transformed_vector[i][1], color='red')
-        plt.scatter(origin_vector[i][0], origin_vector[i][1], color='blue')
+    plt.quiver(*[1, 0],  color=['blue'], scale=10)
+    plt.quiver(*[0, 1],  color=['blue'], scale=10)
+
+    plt.plot(*zip(*transformed_vector), 'go-')
+    plt.plot(*zip(*origin_vector), 'ro-')
+
 
     plt.xlim(-10, 10)
     plt.ylim(-10, 10)
@@ -25,13 +26,13 @@ def showResults3D(transposed_vector, origin_vector):
     ax = fig.add_subplot(111, projection='3d')
 
     # Set the limits
-    ax.set_xlim([0, 10])
-    ax.set_ylim([0, 10])
-    ax.set_zlim([0, 10])
+    ax.set_xlim([-10, 10])
+    ax.set_ylim([-10, 10])
+    ax.set_zlim([-10, 10])
 
-    for i in range(len(origin_vector)):
-        ax.scatter(origin_vector[i][0], origin_vector[i][1], origin_vector[i][2], color='blue')
-        ax.scatter(transposed_vector[i][0], transposed_vector[i][1], transposed_vector[i][2], color='red')
+    plt.plot(*zip(*transposed_vector), 'go-')
+    plt.plot(*zip(*origin_vector), 'ro-')
+
     # Set the labels
     ax.set_xlabel('X')
     ax.set_ylabel('Y')
