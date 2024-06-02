@@ -4,7 +4,7 @@ def rotate(vector, degrees = 0, axis = "none"):
     transposed = []
     if axis == "x":
         R = np.array([[1, 0], [0, -1]])
-    if axis == "y":
+    elif axis == "y":
         R = np.array([[-1, 0], [0, 1]])
     else:
         theta = np.radians(degrees)
@@ -38,18 +38,17 @@ def rotate_3d(vector, degrees = 0, axis = "none"):
 def scale(scalar, vector):
     return scalar * vector
 
-def shear(vector, theta, axis):
-    theta = np.radians(theta)
+def shear(vector, koef, axis):
     transposed = []
     if axis == 'x':
-        R = np.array([[1, np.tan(theta)], [0, 1]])
+        R = np.array([[1, koef], [0, 1]])
     elif axis == 'y':
-        R = np.array([[1, 0], [np.tan(theta), 1]])
+        R = np.array([[1, 0], [koef, 1]])
     for i in range(len(vector)):
         transposed.append(np.dot(R, vector[i]))
     return np.array(transposed)
 
-def castom_transformation(vector, matrix):
+def custom_transformation(vector, matrix):
     transposed = []
     for i in range(len(vector)):
         transposed.append(np.dot(matrix, vector[i]))
